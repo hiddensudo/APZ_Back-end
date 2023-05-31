@@ -1,11 +1,16 @@
-from flask import Flask
+from flask import Flask, render_template
+from db import init_db
+from my_jwt import secret_key
+from flask_jwt_extended import JWTManager
+from flask_cors import CORS
+
 
 app = Flask(__name__)
-
-
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+app.config['JWT_SECRET_KEY'] = secret_key
+app.secret_key = secret_key
+mongo = init_db(app)
+jwt = JWTManager(app)
+CORS(app)
 
 
 if __name__ == '__main__':
