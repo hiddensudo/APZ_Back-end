@@ -16,6 +16,7 @@ from routes.admin_route import *
 from routes.building_routes import *
 from routes.goods_route import *
 from routes.order_route import *
+from routes.day_analytics_route import *
 
 if __name__ == '__main__':
     app.run()
