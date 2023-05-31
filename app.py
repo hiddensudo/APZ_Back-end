@@ -12,6 +12,7 @@ jwt = JWTManager(app)
 CORS(app)
 
 from routes.user_route import *
+from routes.admin_route import *
 
 if __name__ == '__main__':
     app.run()

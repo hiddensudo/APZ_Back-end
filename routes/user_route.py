@@ -15,20 +15,20 @@ def register_user():
     email = data['email']
     password = data['password']
 
-    existing_client = mongo.db.user.find_one({'email': email})
-    if existing_client:
-        return jsonify({'message': 'Client already exists'}), 400
+    existing_user = mongo.db.user.find_one({'email': email})
+    if existing_user:
+        return jsonify({'message': 'User already exists'}), 400
 
     hashed_password = generate_password_hash(password)
-    client_id = mongo.db.user.insert_one({
+    user_id = mongo.db.user.insert_one({
         'first_name': first_name,
         'last_name': last_name,
         'email': email,
         'password': hashed_password
     }).inserted_id
 
-    client = User(first_name, last_name, email, password, client_id)
-    access_token = create_access_token(identity=str(client.id))
+    user = User(first_name, last_name, email, password, user_id)
+    access_token = create_access_token(identity=str(user.id))
     return jsonify({'access_token': access_token}), 200
 
 
