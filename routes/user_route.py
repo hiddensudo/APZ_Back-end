@@ -1,10 +1,17 @@
 from bson import ObjectId
-from flask import jsonify, request, redirect, render_template, session, url_for
+from flask import jsonify, request, redirect, render_template, session, url_for, json
 from app import app, mongo
 from models.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from bson.json_util import dumps
+from bson import json_util
+
+
+@app.route('/api/user/get_all', methods=['GET'])
+def get_all_users():
+    users = list(mongo.db.user.find())
+    return jsonify(json.loads(json_util.dumps(users))), 200
 
 
 @app.route('/api/user/register', methods=['POST'])

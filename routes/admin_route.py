@@ -1,10 +1,16 @@
-from bson import ObjectId
-from flask import jsonify, request, redirect, render_template, session, url_for
+from bson import ObjectId, json_util
+from flask import jsonify, request, redirect, render_template, session, url_for, json
 from app import app, mongo
 from models.admin import Admin
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from bson.json_util import dumps
+
+
+@app.route('/api/admin/get_all', methods=['GET'])
+def view_all_admins():
+    admins = list(mongo.db.admin.find())
+    return jsonify(json.loads(json_util.dumps(admins))), 200
 
 
 @app.route('/api/admin/register', methods=['POST'])
