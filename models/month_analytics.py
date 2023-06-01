@@ -10,10 +10,10 @@ class Month:
         self.user_id = user_id
         self.date = date
         self.month = month
-        self.gas_count = avg_gas_count
-        self.electricity_count = avg_electricity_count
-        self.water_count = avg_water_count
-        self.day_temperature = avg_temperature_count
+        self.avg_gas_count = avg_gas_count
+        self.avg_electricity_count = avg_electricity_count
+        self.avg_water_count = avg_water_count
+        self.avg_temperature_count = avg_temperature_count
 
     def calculate_monthly_averages(user_id):
         end_date = datetime.now()
