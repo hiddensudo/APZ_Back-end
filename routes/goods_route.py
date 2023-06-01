@@ -1,6 +1,7 @@
 from bson import ObjectId, json_util
 from flask import jsonify, request, json
 from app import app, mongo
+from logging.logger import log
 
 
 @app.route('/api/goods/get_all', methods=['GET'])
@@ -21,7 +22,7 @@ def add_goods():
         'description': description,
         'price': price
     }).inserted_id
-
+    log(f'Add new good - {name}')
     return jsonify({'message': 'Goods add successfully'}), 201
 
 
@@ -41,7 +42,7 @@ def update_goods():
             'price': price
         }}
     )
-
+    log(f'Good with id {goods_id} updated')
     return jsonify({'message': 'Goods update successfully'}), 200
 
 
@@ -51,5 +52,5 @@ def delete_goods():
     goods_id = data['goods_id']
 
     mongo.db.goods.delete_one({'_id': ObjectId(goods_id)})
-
+    log(f'Good with id {goods_id} deleted')
     return jsonify({'message': 'Goods deleted successfully'}), 200
