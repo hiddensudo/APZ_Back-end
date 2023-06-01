@@ -1,7 +1,7 @@
 from bson import ObjectId, json_util
 from flask import jsonify, request, json
 from app import app, mongo
-from logging.logger import log
+from routes.logging.logger import log
 
 
 @app.route('/api/goods/get_all', methods=['GET'])

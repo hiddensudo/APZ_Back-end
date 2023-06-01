@@ -4,7 +4,7 @@ from app import app, mongo
 from models.admin import Admin
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
-from logging.logger import log
+from routes.logging.logger import log
 
 
 @app.route('/api/admin/get_all', methods=['GET'])

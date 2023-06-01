@@ -5,7 +5,7 @@ from models.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from bson import json_util
-from logging.logger import log
+from routes.logging.logger import log
 
 
 @app.route('/api/user/get_all', methods=['GET'])
